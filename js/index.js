@@ -2,9 +2,10 @@
 * @Author: dapang
 * @Date:   2018-07-20 13:39:42
 * @Last Modified by:   dapang
-* @Last Modified time: 2018-07-22 23:49:12
+* @Last Modified time: 2018-07-23 23:41:10
 */
 window.onload=function(){
+	//购物车
 	let header=document.getElementsByClassName("header")[0];
 	let shop=header.getElementsByClassName("shop")[0];
 	let shopCarMenu=shop.getElementsByClassName("shopCarMenu")[0];
@@ -17,8 +18,26 @@ window.onload=function(){
 		shopCarMenu.style.height=0;
 		shopCarMenu.style.boxShadow="none";
 	}
-	let aside=document.getElementsByClassName("aside")[0];
-	let lis=aside.getElementsByTagName("li");
+	let bigBox1=document.getElementsByClassName("bigBox")[0];
+	let headerNav=bigBox1.getElementsByClassName("header_nav")[0];
+	let nav_list=headerNav.getElementsByClassName("nav_list")[0];
+	let lis2=nav_list.getElementsByTagName("li");
+	let headerNavMenu=document.getElementsByClassName("header_nav_menu");
+	console.log(lis2);
+	for(let i=0;i<lis2.length-2;i++){
+		lis2[i].onmouseenter=function(){
+			headerNavMenu[i].style.display="block";
+		}
+		lis2[i].onmouseleave=function(){
+			headerNavMenu[i].style.display="none";
+		}
+	}
+	//侧导航
+	let bigBox=document.getElementsByClassName("bigBox")[0];
+	let banner=bigBox.getElementsByClassName("banner")[0];
+	let aside=banner.getElementsByClassName("aside")[0];
+	let ul=aside.getElementsByTagName("ul")[0];
+	let lis=ul.getElementsByClassName("aside_nav");
 	let asideBox=document.getElementsByClassName("asideBox");
 	console.log(asideBox);
 	for(let i=0;i<lis.length;i++){
@@ -32,6 +51,7 @@ window.onload=function(){
 			asideBox[i].style.display="none";
 		}
 	}
+	//块
 	function right_nav(fn){
 		let top=fn.getElementsByClassName("top")[0];
 		let right=top.getElementsByClassName("right")[0];
@@ -60,30 +80,47 @@ window.onload=function(){
     right_nav(peijian);
     let zhoubian=document.getElementsByClassName("zhoubian")[0];
     right_nav(zhoubian);
-    let bigBox=document.getElementsByClassName("bigBox")[0];
-    let con=bigBox.getElementsByClassName("con")[0];
-    let nav1=con.getElementsByClassName("nav")[0];
-    let xia=nav1.getElementsByClassName("xia");
-    let logoCon=document.getElementsByClassName("logoCon");
-    console.log(xia,logoCon);
-    for(let i=0;i<xia.length-2;i++){
-    	xia[i].onmouseenter=function () {
-			for(let j=0;j<xia.length-2;j++){
-                logoCon[j].style.display="none";
-			}
-            logoCon[i].style.display="block";
-            logoCon[i].style.height="230px";
-            logoCon[i].style.background="#fff";
-            logoCon[i].style.borderTop="1px solid #E0E0E0";
-            logoCon[i].style.boxShadow="0 7px 6px rgba(0,0,0,0.2)";
-        }
-        xia[i].onmouseleave=function () {
-            logoCon[i].style.display="none";
-            logoCon[i].style.height=0;
-            logoCon[i].style.background="none";
-            logoCon[i].style.boxShadow="none";
-            logoCon[i].style.borderTop="none";
-        }
-	}
-
+    
+    let bigBox2=document.getElementsByClassName("bigBox")[0];
+    let banner2=bigBox2.getElementsByClassName("banner")[0];
+    let imgBox=banner2.getElementsByClassName("imgBox")[0];
+    let next=document.getElementsByClassName("next")[0];
+    let prev=document.getElementsByClassName("prev")[0];
+    let lis1=imgBox.getElementsByTagName("li");
+    console.log(next);
+    let num=0;
+    let t=setInterval(move,2000);
+    function move(){
+    	num++;
+    	if(num==5){
+    		for(let i=0;i<lis1.length;i++){
+    			lis1[i].style.zIndex=5;
+    			num=0;
+    		}
+    	}
+    	lis1[num].style.zIndex=10;
+    }
+    banner2.onmouseenter=function(){
+    	clearInterval(t);
+    }
+    banner2.onmouseleave=function(){
+    	t=setInterval(move,2000);
+    }
+    next.onclick=function(){
+    	move();
+    }
+    let num1=5;
+    function move1(){
+    	num1--;
+    	if(num1<0){
+    		num1=lis1.length-1;
+    	}
+    	for(let i=0;i<lis1.length;i++){
+    		lis1[i].style.zIndex=5;
+    	}
+    	lis1[num1].style.zIndex=10;
+    }
+    prev.onclick=function(){
+    	move1();
+    }
 }
