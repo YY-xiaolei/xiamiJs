@@ -1,8 +1,8 @@
 /*
 * @Author: dapang
 * @Date:   2018-07-20 13:39:42
-* @Last Modified by:   dapang
-* @Last Modified time: 2018-07-23 23:41:10
+* @Last Modified by:   zhangbufeng
+* @Last Modified time: 2018-07-25 08:40:20
 */
 window.onload=function(){
 	//购物车
@@ -80,25 +80,29 @@ window.onload=function(){
     right_nav(peijian);
     let zhoubian=document.getElementsByClassName("zhoubian")[0];
     right_nav(zhoubian);
-    
+    //banner部分
     let bigBox2=document.getElementsByClassName("bigBox")[0];
     let banner2=bigBox2.getElementsByClassName("banner")[0];
     let imgBox=banner2.getElementsByClassName("imgBox")[0];
     let next=document.getElementsByClassName("next")[0];
     let prev=document.getElementsByClassName("prev")[0];
     let lis1=imgBox.getElementsByTagName("li");
-    console.log(next);
-    let num=0;
+    let btns=document.getElementsByClassName("btns")[0];
+    let sons=btns.getElementsByClassName("son");
+    console.log(sons);
+    /*let num=0;
     let t=setInterval(move,2000);
     function move(){
     	num++;
     	if(num==5){
-    		for(let i=0;i<lis1.length;i++){
-    			lis1[i].style.zIndex=5;
-    			num=0;
-    		}
+    		num=0;
+    	}
+    	for(let i=0;i<lis1.length;i++){
+    		lis1[i].style.zIndex=5;
+    		sons[i].style.background="#92897c";
     	}
     	lis1[num].style.zIndex=10;
+    	sons[num].style.background="#fff";
     }
     banner2.onmouseenter=function(){
     	clearInterval(t);
@@ -109,18 +113,111 @@ window.onload=function(){
     next.onclick=function(){
     	move();
     }
-    let num1=5;
     function move1(){
-    	num1--;
-    	if(num1<0){
-    		num1=lis1.length-1;
+    	num--;
+    	if(num<0){
+    		num=lis1.length-1;
     	}
     	for(let i=0;i<lis1.length;i++){
     		lis1[i].style.zIndex=5;
     	}
-    	lis1[num1].style.zIndex=10;
+    	lis1[num].style.zIndex=10;
     }
     prev.onclick=function(){
     	move1();
     }
+    for(let i=0;i<sons.length;i++){
+    	sons[i].onclick=function(){
+    		for(let j=0; j<sons.length;j++){
+    			lis1[j].style.zIndex=5;
+    			sons[j].style.background="#92897c";
+    		}
+    		lis1[num].style.zIndex=10;
+    		sons[num].style.background="#fff";
+    		num=i;
+    	}	
+    }*/
+    let now=0;
+    let next1=0;
+    let flag=true;
+    let width=parseInt(getComputedStyle(banner2,null).width);
+    let t1=setInterval(move2,2000); 
+    function move2(){
+    	next1++;
+        if(next1>lis1.length-1){
+            next1=0;
+        }
+        lis1[next1].style.left=width+"px";
+        animate(lis1[now],{left:-width});
+        animate(lis1[next1],{left:0},function(){
+            flag=true;
+        });
+        now=next1;
+        for(let i=0;i<sons.length;i++){
+            sons[i].style.background="#92897c";
+            if(next1==i){
+                sons[i].style.background="#fff";
+            }
+            if(next1<i){
+                sons[next1].style.background="#fff";
+            }
+        }
+    }
+    function move3(){
+        next1--;
+        if(next1<0){
+            next1=lis1.length-1;
+        }
+        lis1[next1].style.left=-width+"px";
+        animate(lis1[now],{left:width});
+        animate(lis1[next1],{left:0},function(){
+            flag=true;
+        });
+        now=next1;
+    }
+    for(let i=0;i<sons.length;i++){
+        sons[i].onclick=function(){
+            if(i==now){
+                return;
+            }
+            if(i>now){
+                animate(lis1[now],{left:-width});
+                animate(lis1[i],{left:0},function(){
+                    flag=true;
+                });
+            }
+            if(i<now){
+                animate(lis1[now],{left:width});
+                animate(lis1[i],{left:0},function(){
+                    flag=true;
+                });
+            }
+            for(let j=0;j<sons.length;j++){
+                sons[j].style.background="#92897c";
+            }
+            sons[i].style.background="#fff";
+        }
+        now=next1=i;
+    }
+    next.onclick=function(){
+        if(flag==false){
+            return;
+        }
+        flag=false;
+        move2();
+    }
+    prev.onclick=function(){
+        if(flag==false){
+            return;
+        }
+        flag=false;
+        move3();
+    }
+    banner2.onmouseenter=function(){
+        clearInterval(t1);
+    }
+    banner2.onmouseleave=function(){
+        t=setInterval(move2,2000);
+    }
+
 }

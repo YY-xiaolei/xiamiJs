@@ -1,8 +1,8 @@
 /*
 * @Author: zhangbufeng
 * @Date:   2018-04-24 11:49:55
-* @Last Modified by:   dapang
-* @Last Modified time: 2018-07-23 23:42:21
+* @Last Modified by:   zhangbufeng
+* @Last Modified time: 2018-07-25 00:06:59
 */
 *{
 	margin: 0;
@@ -318,6 +318,7 @@ body{
 	position: relative;
 	top: 0;
 	left: 0;
+	overflow: hidden;
 }
 .bigBox .banner .imgBox{
 	width: 100%;
@@ -328,7 +329,7 @@ body{
 	height: 100%;
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: 1226px;
 	z-index: 5;
 }
 .bigBox .banner .imgBox li a{
@@ -1156,6 +1157,37 @@ body{
 	margin-bottom: 0px;
 	background: #fff;
 	float: left;
+}
+.zhineng .con .box .info{
+	width: 234px;
+	height: 76px;
+	background-color: #ff6700;
+	position: absolute;
+	bottom: -76px;
+	left: 0;
+	transition: all 0.5s;
+	opacity: 0;
+}
+.zhineng .con .box .info a{
+	display: block;
+	padding: 8px 30px;
+	outline: 0;
+	color: #757575;
+	cursor: pointer;
+}
+.zhineng .con .box .info a .review{
+	margin-bottom: 5px;
+	color: #fff;
+	font-size: 12px;
+}
+.zhineng .con .box .info a .author{
+	color: rgba(255,255,255,0.6);
+	overflow: hidden;
+	font-size: 12px;
+}
+.zhineng .con .box:hover .info{
+	bottom: 0;
+	opacity: 1; 
 }
 .zhineng .con .box{
    text-align: center;
@@ -2212,7 +2244,20 @@ body{
 	font-weight: 400;
 	text-align: center;
 }
-.neirong li .wapper .name a{
+.neirong li .wapper .conBox{
+	width: 296px;
+	height: 270px;
+	position: relative;
+}
+.neirong li .wapper .conBox .conBoxList{
+	width: 296px;
+	height: 270px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+.neirong li .wapper .conBox .conBoxList .name a{
 	display: block;
 	color: #333;
 	margin: 0 20px 5px;
@@ -2222,7 +2267,7 @@ body{
 	text-align: center;
 	overflow: hidden;
 }
-.neirong li .wapper .desc a{
+.neirong li .wapper .conBox .conBoxList .desc a{
 	display: block;
 	color: #b0b0b0;
 	margin: 0 48px 10px;
@@ -2232,14 +2277,14 @@ body{
 	text-align: center;
 	overflow: hidden;
 }
-.neirong li .wapper .price a{
+.neirong li .wapper .conBox .conBoxList .price a{
 	display: block;
 	color: #333;
 	height: 21px;
 	margin: 0 10px 15px;
 	text-align: center;
 }
-.neirong li .wapper .figure a{
+.neirong li .wapper .conBox .conBoxList .figure a{
 	display: block;
 	width: 216px;
 	height: 154px;
