@@ -2,7 +2,7 @@
 * @Author: dapang
 * @Date:   2018-07-20 13:39:42
 * @Last Modified by:   zhangbufeng
-* @Last Modified time: 2018-07-25 08:40:20
+* @Last Modified time: 2018-07-26 08:20:34
 */
 window.onload=function(){
 	//购物车
@@ -52,7 +52,7 @@ window.onload=function(){
 		}
 	}
 	//块
-	function right_nav(fn){
+	/*function right_nav(fn){
 		let top=fn.getElementsByClassName("top")[0];
 		let right=top.getElementsByClassName("right")[0];
 		let spans=right.getElementsByTagName("span");
@@ -70,6 +70,7 @@ window.onload=function(){
 			}
 		}
 	}
+
 	let goods=document.getElementsByClassName("goods")[0];
     right_nav(goods);
     let zhineng=document.getElementsByClassName("zhineng")[0];
@@ -79,9 +80,9 @@ window.onload=function(){
     let peijian=document.getElementsByClassName("peijian")[0];
     right_nav(peijian);
     let zhoubian=document.getElementsByClassName("zhoubian")[0];
-    right_nav(zhoubian);
+    right_nav(zhoubian);*/
     //banner部分
-    let bigBox2=document.getElementsByClassName("bigBox")[0];
+    /*let bigBox2=document.getElementsByClassName("bigBox")[0];
     let banner2=bigBox2.getElementsByClassName("banner")[0];
     let imgBox=banner2.getElementsByClassName("imgBox")[0];
     let next=document.getElementsByClassName("next")[0];
@@ -89,7 +90,7 @@ window.onload=function(){
     let lis1=imgBox.getElementsByTagName("li");
     let btns=document.getElementsByClassName("btns")[0];
     let sons=btns.getElementsByClassName("son");
-    console.log(sons);
+    console.log(sons);*/
     /*let num=0;
     let t=setInterval(move,2000);
     function move(){
@@ -137,7 +138,7 @@ window.onload=function(){
     		num=i;
     	}	
     }*/
-    let now=0;
+    /*let now=0;
     let next1=0;
     let flag=true;
     let width=parseInt(getComputedStyle(banner2,null).width);
@@ -155,13 +156,8 @@ window.onload=function(){
         now=next1;
         for(let i=0;i<sons.length;i++){
             sons[i].style.background="#92897c";
-            if(next1==i){
-                sons[i].style.background="#fff";
-            }
-            if(next1<i){
-                sons[next1].style.background="#fff";
-            }
         }
+        sons[next1].style.background="#fff";
     }
     function move3(){
         next1--;
@@ -174,8 +170,25 @@ window.onload=function(){
             flag=true;
         });
         now=next1;
+        for(let i=0;i<sons.length;i++){
+            sons[i].style.background="#92897c";
+            if(next1==i){
+                sons[i].style.background="#fff";
+            }
+        }
+    }
+    sons.onclick=function(){
+        if(!flag){
+            return;
+        }
+        flag=false;
+        move2();
     }
     for(let i=0;i<sons.length;i++){
+        for(let j=0;j<sons.length;j++){
+            sons[j].style.background="#92897c";
+        }
+        sons[i].style.background="#fff";
         sons[i].onclick=function(){
             if(i==now){
                 return;
@@ -191,13 +204,9 @@ window.onload=function(){
                 animate(lis1[i],{left:0},function(){
                     flag=true;
                 });
-            }
-            for(let j=0;j<sons.length;j++){
-                sons[j].style.background="#92897c";
-            }
-            sons[i].style.background="#fff";
+            }   
         }
-        now=next1=i;
+        next1=now=i;
     }
     next.onclick=function(){
         if(flag==false){
@@ -217,7 +226,125 @@ window.onload=function(){
         clearInterval(t1);
     }
     banner2.onmouseleave=function(){
-        t=setInterval(move2,2000);
+        t1=setInterval(move2,2000);
     }
-
+    let shangou=document.getElementsByClassName("shangou")[0];
+    let more=document.getElementsByClassName("more")[0];
+    let btn1=more.getElementsByTagName("button");
+    let conR=document.getElementsByClassName("conR")[0];
+    let ul1=conR.getElementsByTagName("ul")[0];
+    let conRwidth=parseInt(getComputedStyle(ul1,null).width)/2;
+    let btnL=btn1[1],btnR=btn1[0];
+    console.log(ul1);
+    let time=0;
+    btnR.onclick=function(){
+        time++;
+        if(time==2){
+            time=1;
+        }
+        ul1.style.transform=`translateX(${-conRwidth*time}px)`;
+    }
+    btnL.onclick=function(){
+        time--;
+        if(time==-1){
+            time=0;
+        }
+        ul1.style.transform=`translateX(${conRwidth*time}px)`;
+    }*/
+        let neirong=document.getElementsByClassName("neirong")[0];
+        let ul3=neirong.getElementsByTagName("ul");
+        let banner2=document.getElementsByClassName("banner1");
+        let wapper1=document.getElementsByClassName("wapper1")[0];
+        let imgBox=document.getElementsByClassName("imgBox")[0];
+        let next=document.getElementsByClassName("next")[0];
+        let prev=document.getElementsByClassName("prev")[0];
+        let lis1=imgBox.getElementsByTagName("li");
+        let btns=document.getElementsByClassName("btns")[0];
+        let sons=document.getElementsByClassName("son");
+        let now=0;
+        let next1=0;
+        let flag=true;
+        let width=parseInt(getComputedStyle(wapper,null).width);
+        let t=setInterval(move2,1000) ;
+        function move2(){
+            next1++;
+            if(next1>lis1.length-1){
+                next1=0;
+            }
+            lis1[next1].style.left=width+"px";
+            animate(lis1[now],{left:-width});
+            animate(lis1[next1],{left:0},function(){
+                flag=true;
+            });
+            now=next1;
+            for(let i=0;i<sons.length;i++){
+                sons[i].style.borderColor="#f5f5f5";
+                sons[next1].style.background="#b0b0b0";
+            }
+            sons[next1].style.background="#f5f5f5";
+            sons[next1].style.borderColor="#ff6700";
+        }
+        function move3(){
+            next1--;
+            if(next1<0){
+                next1=lis1.length-1;
+            }
+            lis1[next1].style.left=-width+"px";
+            animate(lis1[now],{left:width});
+            animate(lis1[next1],{left:0},function(){
+                flag=true;
+            });
+            now=next1;
+            for(let i=0;i<sons.length;i++){
+                sons[i].style.borderColor="#f5f5f5";
+                sons[next1].style.background="#b0b0b0";
+            }
+            sons[next1].style.background="#f5f5f5";
+            sons[next1].style.borderColor="#ff6700";
+        }
+        next.onclick=function(){
+        if(flag==false){
+            return;
+        }
+        flag=false;
+        move2();
+        }
+        prev.onclick=function(){
+            if(flag==false){
+                return;
+            }
+            flag=false;
+            move3();
+        }
+        sons.onclick=function(){
+        if(!flag){
+            return;
+        }
+        flag=false;
+        move2();
+        for(let i=0;i<sons.length;i++){
+            for(let j=0;j<sons.length;j++){
+                sons[j].style.background="#92897c";
+            }
+            sons[i].style.background="#fff";
+            sons[i].onclick=function(){
+                if(i==now){
+                    return;
+                }
+                if(i>now){
+                    animate(lis1[now],{left:-width});
+                    animate(lis1[i],{left:0},function(){
+                        flag=true;
+                    });
+                }
+                if(i<now){
+                    animate(lis1[now],{left:width});
+                    animate(lis1[i],{left:0},function(){
+                        flag=true;
+                    });
+                }   
+            }
+            next1=now=i;
+            }
+        }
 }
