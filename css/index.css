@@ -2,7 +2,7 @@
 * @Author: zhangbufeng
 * @Date:   2018-04-24 11:49:55
 * @Last Modified by:   zhangbufeng
-* @Last Modified time: 2018-07-26 08:23:30
+* @Last Modified time: 2018-07-30 23:50:32
 */
 *{
 	margin: 0;
@@ -2349,6 +2349,7 @@ button{
 .neirong ul{
 	width: 1226px;
 	height: 420px;
+	overflow: hidden;
 }
 .neirong .banner1:first-child{
 	margin-left: 0;
@@ -2378,6 +2379,7 @@ button{
     margin-bottom: 14px;
     background: #fff;
     transition: all .2s linear;
+    overflow: hidden;
 }
 .neirong .banner1 .title{
 	display: block;
@@ -2389,17 +2391,21 @@ button{
 .neirong .banner1 .wapper{
 	height: 340px;
 	overflow: hidden;
+	position: relative;
 }
-.neirong .banner1 .wapper .imgBox{
+.neirong .banner1 .wapper .imgBox1{
 	width: 1184px;
     margin-left: 0;
     transition: margin-left 0.5s ease;
     height: 340px;
     text-align: center;
-    overflow: hidden;
+    overflow: hidden; 
     color: #333;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-.neirong .banner1:first-child .wapper .imgBox{
+.neirong .banner1:first-child .wapper .imgBox1{
 	width: 888px;
 }
 .neirong .banner1 .prev{
@@ -2517,6 +2523,7 @@ li .figure a img{
     text-indent: -9999em;
     overflow: hidden;
     transition: all .5s;
+    background-color: #b0b0b0;
 }
 .neirong .banner1 .btns .son:first-child .dot{
 	border-color: #ff6700;

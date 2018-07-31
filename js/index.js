@@ -2,14 +2,13 @@
 * @Author: dapang
 * @Date:   2018-07-20 13:39:42
 * @Last Modified by:   zhangbufeng
-* @Last Modified time: 2018-07-26 08:20:34
+* @Last Modified time: 2018-07-31 21:56:55
 */
 window.onload=function(){
 	//购物车
 	let header=document.getElementsByClassName("header")[0];
 	let shop=header.getElementsByClassName("shop")[0];
 	let shopCarMenu=shop.getElementsByClassName("shopCarMenu")[0];
-	console.log(shop,shopCarMenu);
 	shop.onmouseenter=function(){
 		shopCarMenu.style.height="98px";
 		shopCarMenu.style.boxShadow=" 0 2px 10px rgba(0,0,0,0.15)";
@@ -23,7 +22,6 @@ window.onload=function(){
 	let nav_list=headerNav.getElementsByClassName("nav_list")[0];
 	let lis2=nav_list.getElementsByTagName("li");
 	let headerNavMenu=document.getElementsByClassName("header_nav_menu");
-	console.log(lis2);
 	for(let i=0;i<lis2.length-2;i++){
 		lis2[i].onmouseenter=function(){
 			headerNavMenu[i].style.display="block";
@@ -39,7 +37,6 @@ window.onload=function(){
 	let ul=aside.getElementsByTagName("ul")[0];
 	let lis=ul.getElementsByClassName("aside_nav");
 	let asideBox=document.getElementsByClassName("asideBox");
-	console.log(asideBox);
 	for(let i=0;i<lis.length;i++){
 		lis[i].onmouseenter=function(){
 			for(let j=0;j<lis.length;j++){
@@ -52,13 +49,12 @@ window.onload=function(){
 		}
 	}
 	//块
-	/*function right_nav(fn){
+	function right_nav(fn){
 		let top=fn.getElementsByClassName("top")[0];
 		let right=top.getElementsByClassName("right")[0];
 		let spans=right.getElementsByTagName("span");
 		let con=fn.getElementsByClassName("con")[0];
 		let right_Box=con.getElementsByClassName("right_Box");
-		console.log(spans);
 		for(let i=0;i<spans.length;i++){
 			spans[i].onmouseenter=function(){
 				for(let j=0;j<spans.length;j++){
@@ -70,7 +66,6 @@ window.onload=function(){
 			}
 		}
 	}
-
 	let goods=document.getElementsByClassName("goods")[0];
     right_nav(goods);
     let zhineng=document.getElementsByClassName("zhineng")[0];
@@ -80,18 +75,17 @@ window.onload=function(){
     let peijian=document.getElementsByClassName("peijian")[0];
     right_nav(peijian);
     let zhoubian=document.getElementsByClassName("zhoubian")[0];
-    right_nav(zhoubian);*/
+    right_nav(zhoubian);
     //banner部分
-    /*let bigBox2=document.getElementsByClassName("bigBox")[0];
+    let bigBox2=document.getElementsByClassName("bigBox")[0];
     let banner2=bigBox2.getElementsByClassName("banner")[0];
-    let imgBox=banner2.getElementsByClassName("imgBox")[0];
+    let imgBox1=banner2.getElementsByClassName("imgBox")[0];
     let next=document.getElementsByClassName("next")[0];
     let prev=document.getElementsByClassName("prev")[0];
-    let lis1=imgBox.getElementsByTagName("li");
+    let lis1=imgBox1.getElementsByTagName("li");
     let btns=document.getElementsByClassName("btns")[0];
     let sons=btns.getElementsByClassName("son");
-    console.log(sons);*/
-    /*let num=0;
+    let num=0;
     let t=setInterval(move,2000);
     function move(){
     	num++;
@@ -104,6 +98,7 @@ window.onload=function(){
     	}
     	lis1[num].style.zIndex=10;
     	sons[num].style.background="#fff";
+        animate(lis1[num],{left:0})
     }
     banner2.onmouseenter=function(){
     	clearInterval(t);
@@ -121,8 +116,11 @@ window.onload=function(){
     	}
     	for(let i=0;i<lis1.length;i++){
     		lis1[i].style.zIndex=5;
+            sons[i].style.background="#92897c";
     	}
     	lis1[num].style.zIndex=10;
+        sons[num].style.background="#fff";
+        animate(lis1[num],{left:0})
     }
     prev.onclick=function(){
     	move1();
@@ -137,97 +135,8 @@ window.onload=function(){
     		sons[num].style.background="#fff";
     		num=i;
     	}	
-    }*/
-    /*let now=0;
-    let next1=0;
-    let flag=true;
-    let width=parseInt(getComputedStyle(banner2,null).width);
-    let t1=setInterval(move2,2000); 
-    function move2(){
-    	next1++;
-        if(next1>lis1.length-1){
-            next1=0;
-        }
-        lis1[next1].style.left=width+"px";
-        animate(lis1[now],{left:-width});
-        animate(lis1[next1],{left:0},function(){
-            flag=true;
-        });
-        now=next1;
-        for(let i=0;i<sons.length;i++){
-            sons[i].style.background="#92897c";
-        }
-        sons[next1].style.background="#fff";
     }
-    function move3(){
-        next1--;
-        if(next1<0){
-            next1=lis1.length-1;
-        }
-        lis1[next1].style.left=-width+"px";
-        animate(lis1[now],{left:width});
-        animate(lis1[next1],{left:0},function(){
-            flag=true;
-        });
-        now=next1;
-        for(let i=0;i<sons.length;i++){
-            sons[i].style.background="#92897c";
-            if(next1==i){
-                sons[i].style.background="#fff";
-            }
-        }
-    }
-    sons.onclick=function(){
-        if(!flag){
-            return;
-        }
-        flag=false;
-        move2();
-    }
-    for(let i=0;i<sons.length;i++){
-        for(let j=0;j<sons.length;j++){
-            sons[j].style.background="#92897c";
-        }
-        sons[i].style.background="#fff";
-        sons[i].onclick=function(){
-            if(i==now){
-                return;
-            }
-            if(i>now){
-                animate(lis1[now],{left:-width});
-                animate(lis1[i],{left:0},function(){
-                    flag=true;
-                });
-            }
-            if(i<now){
-                animate(lis1[now],{left:width});
-                animate(lis1[i],{left:0},function(){
-                    flag=true;
-                });
-            }   
-        }
-        next1=now=i;
-    }
-    next.onclick=function(){
-        if(flag==false){
-            return;
-        }
-        flag=false;
-        move2();
-    }
-    prev.onclick=function(){
-        if(flag==false){
-            return;
-        }
-        flag=false;
-        move3();
-    }
-    banner2.onmouseenter=function(){
-        clearInterval(t1);
-    }
-    banner2.onmouseleave=function(){
-        t1=setInterval(move2,2000);
-    }
+    //闪购
     let shangou=document.getElementsByClassName("shangou")[0];
     let more=document.getElementsByClassName("more")[0];
     let btn1=more.getElementsByTagName("button");
@@ -235,7 +144,6 @@ window.onload=function(){
     let ul1=conR.getElementsByTagName("ul")[0];
     let conRwidth=parseInt(getComputedStyle(ul1,null).width)/2;
     let btnL=btn1[1],btnR=btn1[0];
-    console.log(ul1);
     let time=0;
     btnR.onclick=function(){
         time++;
@@ -250,101 +158,151 @@ window.onload=function(){
             time=0;
         }
         ul1.style.transform=`translateX(${conRwidth*time}px)`;
-    }*/
+    }
+    //内容页面
+    function neirong(xc){
         let neirong=document.getElementsByClassName("neirong")[0];
         let ul3=neirong.getElementsByTagName("ul");
-        let banner2=document.getElementsByClassName("banner1");
-        let wapper1=document.getElementsByClassName("wapper1")[0];
-        let imgBox=document.getElementsByClassName("imgBox")[0];
-        let next=document.getElementsByClassName("next")[0];
-        let prev=document.getElementsByClassName("prev")[0];
-        let lis1=imgBox.getElementsByTagName("li");
-        let btns=document.getElementsByClassName("btns")[0];
-        let sons=document.getElementsByClassName("son");
+        let wapper=document.querySelectorAll(".wapper");
+        let imgBox=xc.querySelector(".imgBox1");
+        let next=xc.querySelector(".next");
+        let prev=xc.querySelector(".prev");
+        let lisW=imgBox.querySelector("li");
+        let btns=xc.querySelector(".btns");
+        let dots=btns.getElementsByClassName("dot");
+        let width=parseInt(getComputedStyle(lisW,null).width);
+        let width1=parseInt(getComputedStyle(imgBox,null).width);
+        let num=width1/width;
+        let time1=0;
         let now=0;
-        let next1=0;
-        let flag=true;
-        let width=parseInt(getComputedStyle(wapper,null).width);
-        let t=setInterval(move2,1000) ;
-        function move2(){
-            next1++;
-            if(next1>lis1.length-1){
-                next1=0;
-            }
-            lis1[next1].style.left=width+"px";
-            animate(lis1[now],{left:-width});
-            animate(lis1[next1],{left:0},function(){
-                flag=true;
-            });
-            now=next1;
-            for(let i=0;i<sons.length;i++){
-                sons[i].style.borderColor="#f5f5f5";
-                sons[next1].style.background="#b0b0b0";
-            }
-            sons[next1].style.background="#f5f5f5";
-            sons[next1].style.borderColor="#ff6700";
-        }
-        function move3(){
-            next1--;
-            if(next1<0){
-                next1=lis1.length-1;
-            }
-            lis1[next1].style.left=-width+"px";
-            animate(lis1[now],{left:width});
-            animate(lis1[next1],{left:0},function(){
-                flag=true;
-            });
-            now=next1;
-            for(let i=0;i<sons.length;i++){
-                sons[i].style.borderColor="#f5f5f5";
-                sons[next1].style.background="#b0b0b0";
-            }
-            sons[next1].style.background="#f5f5f5";
-            sons[next1].style.borderColor="#ff6700";
-        }
         next.onclick=function(){
-        if(flag==false){
-            return;
-        }
-        flag=false;
-        move2();
+            time1++;
+            if(time1==num){
+                time1=num-1;
+            }
+            imgBox.style.transform=`translateX(${-width*time1}px)`;
+            for(let i=0;i<dots.length;i++){
+                dots[i].style.borderColor="#f5f5f5"
+                dots[i].style.backgroundColor="#b0b0b0"
+            }
+            dots[time1].style.borderColor="#ff6700"
+            dots[time1].style.backgroundColor="#f5f5f5"
         }
         prev.onclick=function(){
-            if(flag==false){
-                return;
+            time1--;
+            if(time1==-1){
+                time1=0;
             }
-            flag=false;
-            move3();
-        }
-        sons.onclick=function(){
-        if(!flag){
-            return;
-        }
-        flag=false;
-        move2();
-        for(let i=0;i<sons.length;i++){
-            for(let j=0;j<sons.length;j++){
-                sons[j].style.background="#92897c";
+            imgBox.style.transform=`translateX(${-width*time1}px)`;
+            for(let i=0;i<dots.length;i++){
+                dots[i].style.borderColor="#f5f5f5"
+                dots[i].style.backgroundColor="#b0b0b0"
             }
-            sons[i].style.background="#fff";
-            sons[i].onclick=function(){
-                if(i==now){
-                    return;
+            dots[time1].style.borderColor="#ff6700"
+            dots[time1].style.backgroundColor="#f5f5f5"
+        }
+        for(let i=0;i<dots.length;i++){
+            if(dots.length=3){
+                dots[0].onclick=function(){
+                    imgBox.style.left=0;
+                    for(let i=0;i<dots.length;i++){
+                        dots[i].style.borderColor="#f5f5f5"
+                        dots[i].style.backgroundColor="#b0b0b0"
+                    }
+                    dots[0].style.borderColor="#ff6700"
+                    dots[0].style.backgroundColor="#f5f5f5"
                 }
-                if(i>now){
-                    animate(lis1[now],{left:-width});
-                    animate(lis1[i],{left:0},function(){
-                        flag=true;
-                    });
+                dots[1].onclick=function(){
+                    imgBox.style.left="-296px"
+                    for(let i=0;i<dots.length;i++){
+                        dots[i].style.borderColor="#f5f5f5"
+                        dots[i].style.backgroundColor="#b0b0b0"
+                    }
+                    dots[1].style.borderColor="#ff6700"
+                    dots[1].style.backgroundColor="#f5f5f5"
                 }
-                if(i<now){
-                    animate(lis1[now],{left:width});
-                    animate(lis1[i],{left:0},function(){
-                        flag=true;
-                    });
-                }   
+                dots[2].onclick=function(){
+                    imgBox.style.left="-592px"
+                    for(let i=0;i<dots.length;i++){
+                        dots[i].style.borderColor="#f5f5f5"
+                        dots[i].style.backgroundColor="#b0b0b0"
+                    }
+                    dots[2].style.borderColor="#ff6700"
+                    dots[2].style.backgroundColor="#f5f5f5"
+                }
             }
-            next1=now=i;
+            else{
+                dots[0].onclick=function(){
+                    imgBox.style.left=0;
+                    for(let i=0;i<dots.length;i++){
+                        dots[i].style.borderColor="#f5f5f5"
+                        dots[i].style.backgroundColor="#b0b0b0"
+                    }
+                    dots[0].style.borderColor="#ff6700"
+                    dots[0].style.backgroundColor="#f5f5f5"
+                }
+                dots[1].onclick=function(){
+                    imgBox.style.left="-296px"
+                    for(let i=0;i<dots.length;i++){
+                        dots[i].style.borderColor="#f5f5f5"
+                        dots[i].style.backgroundColor="#b0b0b0"
+                    }
+                    dots[1].style.borderColor="#ff6700"
+                    dots[1].style.backgroundColor="#f5f5f5"
+                }
+                dots[2].onclick=function(){
+                    imgBox.style.left="-592px"
+                    for(let i=0;i<dots.length;i++){
+                        dots[i].style.borderColor="#f5f5f5"
+                        dots[i].style.backgroundColor="#b0b0b0"
+                    }
+                    dots[2].style.borderColor="#ff6700"
+                    dots[2].style.backgroundColor="#f5f5f5"
+                }
+                dots[3].onclick=function(){
+                    imgBox.style.left="-888px"
+                    for(let i=0;i<dots.length;i++){
+                        dots[i].style.borderColor="#f5f5f5"
+                        dots[i].style.backgroundColor="#b0b0b0"
+                    }
+                    dots[3].style.borderColor="#ff6700"
+                    dots[3].style.backgroundColor="#f5f5f5"
+                }
             }
         }
+    }
+    let nr_1=document.querySelector(".nr_1");
+    neirong(nr_1);
+    let nr_2=document.querySelector(".nr_2");
+    neirong(nr_2);
+    let nr_3=document.querySelector(".nr_3");
+    neirong(nr_3);
+    let nr_4=document.querySelector(".nr_4");
+    neirong(nr_4);
+    //倒计时
+    fn1();
+    setInterval(fn1, 1000);
+    function fn1(){            
+        let shangou=document.querySelector(".shangou");
+        let span=shangou.querySelectorAll("span");
+        let arr=times();
+        span.forEach(function(e,i){
+            e.innerText=arr[i];
+        })
+        return span;
+    }
+    function times(){
+        let now=new Date();
+        let futrue=new Date(2018,6,27,18,00,00);
+        let time=Math.floor((futrue.getTime()-now.getTime())/1000);
+        let arr=[];
+        let hours=Math.floor(time/(60*60));
+        time=time%(60*60);
+        arr.push(hours);
+        let minutes=Math.floor(time/60);
+        arr.push(minutes);
+        let s=Math.floor(time%60);
+        arr.push(s);
+        return arr;
+    }
 }
