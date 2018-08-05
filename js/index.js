@@ -2,7 +2,7 @@
 * @Author: dapang
 * @Date:   2018-07-20 13:39:42
 * @Last Modified by:   zhangbufeng
-* @Last Modified time: 2018-07-31 21:56:55
+* @Last Modified time: 2018-08-05 16:49:25
 */
 window.onload=function(){
 	//购物车
@@ -20,16 +20,40 @@ window.onload=function(){
 	let bigBox1=document.getElementsByClassName("bigBox")[0];
 	let headerNav=bigBox1.getElementsByClassName("header_nav")[0];
 	let nav_list=headerNav.getElementsByClassName("nav_list")[0];
-	let lis2=nav_list.getElementsByTagName("li");
+	let lis2=nav_list.querySelectorAll("li");
 	let headerNavMenu=document.getElementsByClassName("header_nav_menu");
 	for(let i=0;i<lis2.length-2;i++){
 		lis2[i].onmouseenter=function(){
-			headerNavMenu[i].style.display="block";
+            headerNavMenu[0].style.height="229px";
+            headerNavMenu[0].style.borderTop="1px";
 		}
 		lis2[i].onmouseleave=function(){
-			headerNavMenu[i].style.display="none";
+            headerNavMenu[0].style.height=0;
+            headerNavMenu[0].style.borderTop=0;
 		}
 	}
+    //search
+    let bigBox3=document.getElementsByClassName("bigBox")[0];
+    let search=bigBox3.getElementsByClassName("search")[0];
+    let input=bigBox3.querySelector("input");
+    let span=search.querySelector("span");
+    let search_hot_words=search.querySelector(".search_hot_words");
+    let bottomBox=search.querySelector(".bottomBox");
+    console.log(bottomBox)
+    input.onfocus=function (e){
+        input.style.borderColor="#ff6700"
+        span.style.borderColor="#ff6700"
+        search_hot_words.style.display="none"
+        bottomBox.style.height="300px"
+        bottomBox.style.borderWidth="1px";
+    }
+    input.onblur=function(){
+        input.style.borderColor="#e0e0e0"
+        span.style.borderColor="#e0e0e0"
+        search_hot_words.style.display="block"
+        bottomBox.style.height="0"
+        bottomBox.style.borderWidth="0";
+    }
 	//侧导航
 	let bigBox=document.getElementsByClassName("bigBox")[0];
 	let banner=bigBox.getElementsByClassName("banner")[0];
