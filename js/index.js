@@ -21,16 +21,18 @@ window.onload=function(){
 	let headerNav=bigBox1.getElementsByClassName("header_nav")[0];
 	let nav_list=headerNav.getElementsByClassName("nav_list")[0];
 	let lis2=nav_list.querySelectorAll("li");
-	let headerNavMenu=document.getElementsByClassName("header_nav_menu");
+    let headerNavMenu=document.getElementsByClassName("header_nav_menu");
 	for(let i=0;i<lis2.length-2;i++){
 		lis2[i].onmouseenter=function(){
-            headerNavMenu[0].style.height="229px";
-            headerNavMenu[0].style.borderTop="1px";
+            headerNavMenu[i].style.height = "229px";
+            headerNavMenu[i].style.borderTop = "1px";
 		}
-		lis2[i].onmouseleave=function(){
-            headerNavMenu[0].style.height=0;
-            headerNavMenu[0].style.borderTop=0;
-		}
+        lis2[i].onmouseleave=function(){
+            headerNavMenu[i].onmouseleave = function (){
+                headerNavMenu[i].style.height = 0;
+                headerNavMenu[i].style.borderTop = 0;
+            }
+        }
 	}
     //search
     let bigBox3=document.getElementsByClassName("bigBox")[0];
@@ -39,7 +41,6 @@ window.onload=function(){
     let span=search.querySelector("span");
     let search_hot_words=search.querySelector(".search_hot_words");
     let bottomBox=search.querySelector(".bottomBox");
-    console.log(bottomBox)
     input.onfocus=function (e){
         input.style.borderColor="#ff6700"
         span.style.borderColor="#ff6700"

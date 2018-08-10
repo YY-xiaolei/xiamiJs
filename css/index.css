@@ -275,7 +275,7 @@ body{
     font-size: 14px;
     line-height: 48px;
     outline: 0;
-    transition: all .2s;
+	transition: all .2s;
 }
 .bigBox .site-header .con .search .search_hot_words{
 	position: absolute;
