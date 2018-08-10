@@ -317,7 +317,7 @@ window.onload=function(){
     }
     function times(){
         let now=new Date();
-        let futrue=new Date(2018,6,27,18,00,00);
+        let futrue=new Date(2018,7,10,18,00,00);
         let time=Math.floor((futrue.getTime()-now.getTime())/1000);
         let arr=[];
         let hours=Math.floor(time/(60*60));
